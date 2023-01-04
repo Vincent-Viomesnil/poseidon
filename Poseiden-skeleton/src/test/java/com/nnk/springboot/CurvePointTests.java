@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,12 +23,19 @@ public class CurvePointTests {
 
 	@Test
 	public void curvePointTest() {
-		CurvePoint curvePoint = new CurvePoint(10, 10d, 30d);
-
+		String str="2018-09-01 09:01:15";
+		Timestamp creationDate = Timestamp.valueOf(str);
+		Timestamp asOfDate = Timestamp.from(Instant.now());
+		Integer curveId = 111;
+		CurvePoint curvePoint = new CurvePoint(10, curveId,asOfDate, 10d, 30d , creationDate);
 		// Save
-		curvePoint = curvePointRepository.save(curvePoint);
+		curvePointRepository.save(curvePoint);
+
 		Assert.assertNotNull(curvePoint.getId());
-		Assert.assertTrue(curvePoint.getCurveId() == 10);
+		Assert.assertNotNull(curvePoint.getTerm());
+		Assert.assertNotNull(curvePoint.getValue());
+		Assert.assertEquals(10, curvePoint.getId());
+		Assert.assertEquals(111, (int) curvePoint.getCurveId());
 
 		// Update
 		curvePoint.setCurveId(20);
