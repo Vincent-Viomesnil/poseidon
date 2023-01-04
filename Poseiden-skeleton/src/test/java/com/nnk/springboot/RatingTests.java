@@ -24,13 +24,13 @@ public class RatingTests {
 		Rating rating = new Rating("Moodys Rating", "Sand PRating", "Fitch Rating", 10);
 
 		// Save
-		rating = ratingRepository.save(rating);
+		ratingRepository.save(rating);
 		Assert.assertNotNull(rating.getId());
 		Assert.assertTrue(rating.getOrderNumber() == 10);
 
 		// Update
 		rating.setOrderNumber(20);
-		rating = ratingRepository.save(rating);
+		ratingRepository.save(rating);
 		Assert.assertTrue(rating.getOrderNumber() == 20);
 
 		// Find

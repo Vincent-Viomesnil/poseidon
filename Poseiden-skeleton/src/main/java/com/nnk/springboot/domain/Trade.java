@@ -17,8 +17,8 @@ import java.sql.Timestamp;
 @Table(name = "trade")
 public class Trade {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TradeId", nullable = false)
     private int tradeId;
     @Basic
@@ -82,19 +82,9 @@ public class Trade {
     @Column(name = "side", nullable = true, length = 125)
     private String side;
 
-    public Trade(String trade_account, String type) {
+    public Trade(String account, String type) {
+        this.account = account;
+        this.type = type;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Trade trade = (Trade) o;
-//        return tradeId == trade.tradeId && Objects.equals(account, trade.account) && Objects.equals(type, trade.type) && Objects.equals(buyQuantity, trade.buyQuantity) && Objects.equals(sellQuantity, trade.sellQuantity) && Objects.equals(buyPrice, trade.buyPrice) && Objects.equals(sellPrice, trade.sellPrice) && Objects.equals(tradeDate, trade.tradeDate) && Objects.equals(security, trade.security) && Objects.equals(status, trade.status) && Objects.equals(trader, trade.trader) && Objects.equals(benchmark, trade.benchmark) && Objects.equals(book, trade.book) && Objects.equals(creationName, trade.creationName) && Objects.equals(creationDate, trade.creationDate) && Objects.equals(revisionName, trade.revisionName) && Objects.equals(revisionDate, trade.revisionDate) && Objects.equals(dealName, trade.dealName) && Objects.equals(dealType, trade.dealType) && Objects.equals(sourceListId, trade.sourceListId) && Objects.equals(side, trade.side);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(tradeId, account, type, buyQuantity, sellQuantity, buyPrice, sellPrice, tradeDate, security, status, trader, benchmark, book, creationName, creationDate, revisionName, revisionDate, dealName, dealType, sourceListId, side);
-//    }
 }

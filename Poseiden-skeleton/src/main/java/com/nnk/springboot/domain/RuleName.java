@@ -37,7 +37,14 @@ public class RuleName {
     @Column(name = "sqlPart", nullable = true, length = 125)
     private String sqlPart;
 
-    public RuleName(String rule_name, String description, String json, String template, String sql, String sql_part) {
+    public RuleName(String name, String description, String json, String template, String sqlStr, String sql_part) {
+        this.name =name;
+        this.description=description;
+        this.json = json;
+        this.template = template;
+        this.sqlStr = sqlStr;
+        this.sqlPart = sql_part;
+
     }
 
 }

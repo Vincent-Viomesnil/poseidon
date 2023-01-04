@@ -83,6 +83,10 @@ public class BidList {
     @Column(name = "side", nullable = true, length = 125)
     private String side;
 
-    public BidList(String account_test, String type_test, double v) {
+    public BidList(int bidListId, String account, String type, Double bidQuantity) {
+        this.bidListId = bidListId;
+        this.account = account;
+        this.type= type;
+        this.bidQuantity = bidQuantity;
     }
 }

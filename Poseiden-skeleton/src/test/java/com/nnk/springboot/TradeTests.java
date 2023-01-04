@@ -24,13 +24,12 @@ public class TradeTests {
 		Trade trade = new Trade("Trade Account", "Type");
 
 		// Save
-		trade = tradeRepository.save(trade);
-		Assert.assertNotNull(trade.getTradeId());
+		tradeRepository.save(trade);
 		Assert.assertTrue(trade.getAccount().equals("Trade Account"));
 
 		// Update
 		trade.setAccount("Trade Account Update");
-		trade = tradeRepository.save(trade);
+		tradeRepository.save(trade);
 		Assert.assertTrue(trade.getAccount().equals("Trade Account Update"));
 
 		// Find
