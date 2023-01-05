@@ -1,8 +1,6 @@
 package com.nnk.springboot.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,16 +9,13 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "curvepoint")
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    private int id;
-
+    private Integer id;
 
     @Column(name = "CurveId")
     private Integer curveId;
@@ -43,4 +38,7 @@ public class CurvePoint {
         this.value = value;
     }
 
+    public CurvePoint() {
+
+    }
 }
