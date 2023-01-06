@@ -5,6 +5,7 @@ import com.nnk.springboot.repositories.CurvePointRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class CurvePointTests {
 
 	@Autowired
@@ -20,12 +22,12 @@ public class CurvePointTests {
 
 	@Test
 	public void curvePointTest() {
-		CurvePoint curvePoint = new CurvePoint(10, 10d, 30d);
+		CurvePoint curvePoint = new CurvePoint(17, 10d, 30d);
 
 		// Save
 		curvePointRepository.save(curvePoint);
 		assertNotNull(curvePoint.getId());
-		assertTrue(curvePoint.getCurveId() == 10);
+		assertTrue(curvePoint.getCurveId() == 17);
 
 		// Update
 		curvePoint.setCurveId(20);
