@@ -25,11 +25,11 @@ public class BidList {
     @NotNull(message = "type is mandatory")
     private String type;
 
-    @Column(name = "bidQuantity", nullable = true, precision = 0)
+    @Column(name = "bid_quantity", nullable = false, precision = 0)
     @NotNull(message = "bidQuantity is mandatory")
     private Double bidQuantity;
 
-    @Column(name = "askQuantity", nullable = true, precision = 0)
+    @Column(name = "ask_quantity", nullable = true, precision = 0)
     private Double askQuantity;
 
     @Column(name = "bid", nullable = true, precision = 0)
@@ -41,7 +41,7 @@ public class BidList {
     @Column(name = "benchmark", nullable = true, length = 125)
     private String benchmark;
 
-    @Column(name = "bidListDate", nullable = true)
+    @Column(name = "bid_list_date", nullable = true)
     private Timestamp bidListDate;
 
     @Column(name = "commentary", nullable = true, length = 125)
@@ -59,25 +59,25 @@ public class BidList {
     @Column(name = "book", nullable = true, length = 125)
     private String book;
 
-    @Column(name = "creationName", nullable = true, length = 125)
+    @Column(name = "creation_name", nullable = true, length = 125)
     private String creationName;
 
-    @Column(name = "creationDate", nullable = true)
+    @Column(name = "creation_date", nullable = true)
     private Timestamp creationDate;
 
-    @Column(name = "revisionName", nullable = true, length = 125)
+    @Column(name = "revision_name", nullable = true, length = 125)
     private String revisionName;
 
-    @Column(name = "revisionDate", nullable = true)
+    @Column(name = "revision_date", nullable = true)
     private Timestamp revisionDate;
 
-    @Column(name = "dealName", nullable = true, length = 125)
+    @Column(name = "deal_name", nullable = true, length = 125)
     private String dealName;
 
-    @Column(name = "dealType", nullable = true, length = 125)
+    @Column(name = "deal_type", nullable = true, length = 125)
     private String dealType;
 
-    @Column(name = "sourceListId", nullable = true, length = 125)
+    @Column(name = "source_list_id", nullable = true, length = 125)
     private String sourceListId;
 
     @Column(name = "side", nullable = true, length = 125)

@@ -17,10 +17,10 @@ public class CurvePoint {
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "CurveId")
+    @Column(name = "curve_id")
     private Integer curveId;
 
-    @Column(name = "asOfDate")
+    @Column(name = "as_of_date")
     private Timestamp asOfDate;
 
     @Column(name = "term")
@@ -29,7 +29,7 @@ public class CurvePoint {
     @Column(name = "value")
     private Double value;
 
-    @Column(name = "creationDate")
+    @Column(name = "creation_date")
     private Timestamp creationDate;
 
     public CurvePoint(Integer curveId, Double term, Double value) {
