@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.service.BidListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class BidListController {
     @Autowired
     private BidListService bidListService;
 
+    @Autowired
+    private BidListRepository bidListRepository;
+
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
@@ -31,6 +35,7 @@ public class BidListController {
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+
         return "bidList/add";
     }
 
@@ -54,7 +59,6 @@ public class BidListController {
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
         if (result.hasErrors()) {
             return "bidList/update";
         }
@@ -68,7 +72,6 @@ public class BidListController {
 
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
         BidList bidList = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidlist Id:" + id));
         bidListService.delete(bidList);
         model.addAttribute("bidList", bidList);

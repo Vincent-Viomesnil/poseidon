@@ -23,19 +23,19 @@ public class Trade {
     @Column(name = "type", nullable = false, length = 30)
     private String type;
 
-    @Column(name = "buyQuantity", nullable = true, precision = 0)
+    @Column(name = "buy_quantity", nullable = true, precision = 0)
     private Double buyQuantity;
 
-    @Column(name = "sellQuantity", nullable = true, precision = 0)
+    @Column(name = "sell_quantity", nullable = true, precision = 0)
     private Double sellQuantity;
 
-    @Column(name = "buyPrice", nullable = true, precision = 0)
+    @Column(name = "buy_price", nullable = true, precision = 0)
     private Double buyPrice;
 
-    @Column(name = "sellPrice", nullable = true, precision = 0)
+    @Column(name = "sell_price", nullable = true, precision = 0)
     private Double sellPrice;
 
-    @Column(name = "tradeDate")
+    @Column(name = "trade_date")
     private Timestamp tradeDate;
 
     @Column(name = "security", nullable = true, length = 125)
@@ -53,25 +53,25 @@ public class Trade {
     @Column(name = "book", nullable = true, length = 125)
     private String book;
 
-    @Column(name = "creationName", nullable = true, length = 125)
+    @Column(name = "creation_name", nullable = true, length = 125)
     private String creationName;
 
-    @Column(name = "creationDate", nullable = true)
+    @Column(name = "creation_date", nullable = true)
     private Timestamp creationDate;
 
-    @Column(name = "revisionName", nullable = true, length = 125)
+    @Column(name = "revision_name", nullable = true, length = 125)
     private String revisionName;
 
-    @Column(name = "revisionDate", nullable = true)
+    @Column(name = "revision_date", nullable = true)
     private Timestamp revisionDate;
 
-    @Column(name = "dealName", nullable = true, length = 125)
+    @Column(name = "deal_name", nullable = true, length = 125)
     private String dealName;
 
-    @Column(name = "dealType", nullable = true, length = 125)
+    @Column(name = "deal_type", nullable = true, length = 125)
     private String dealType;
 
-    @Column(name = "sourceListId", nullable = true, length = 125)
+    @Column(name = "source_list_id", nullable = true, length = 125)
     private String sourceListId;
 
     @Column(name = "side", nullable = true, length = 125)

@@ -15,16 +15,16 @@ public class Rating {
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "moodysRating", nullable = true, length = 125)
+    @Column(name = "moodys_rating", nullable = true, length = 125)
     private String moodysRating;
 
-    @Column(name = "sandPRating", nullable = true, length = 125)
+    @Column(name = "sand_p_rating", nullable = true, length = 125)
     private String sandPRating;
 
-    @Column(name = "fitchRating", nullable = true, length = 125)
+    @Column(name = "fitch_rating", nullable = true, length = 125)
     private String fitchRating;
 
-    @Column(name = "orderNumber", nullable = true)
+    @Column(name = "order_number", nullable = true)
     private Integer orderNumber;
 
     public Rating(String moodysRating, String sandPRating, String fitchRating, Integer orderNumber) {
