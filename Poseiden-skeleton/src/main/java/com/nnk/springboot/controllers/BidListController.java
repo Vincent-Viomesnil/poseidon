@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.service.BidListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,6 @@ public class BidListController {
     @Autowired
     private BidListService bidListService;
 
-    @Autowired
-    private BidListRepository bidListRepository;
 
     @RequestMapping("/bidList/list")
     public String home(Model model)
