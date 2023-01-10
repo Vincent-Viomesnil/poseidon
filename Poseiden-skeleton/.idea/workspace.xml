@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cef81fe-2ff5-46dc-9979-76961b74ec4c" name="Changes" comment="" />
+    <list default="true" id="8cef81fe-2ff5-46dc-9979-76961b74ec4c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +21,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
@@ -34,7 +37,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "configurable.group.appearance"
+    "settings.editor.selected.configurable": "MavenSettings",
+    "spring.configuration.checksum": "a1b109d2be29f7cf7fbe5932f994204d"
   }
 }]]></component>
   <component name="RunManager">
@@ -55,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672930439419</updated>
       <workItem from="1672930440610" duration="25000" />
+      <workItem from="1673337939058" duration="280000" />
     </task>
     <servers />
   </component>

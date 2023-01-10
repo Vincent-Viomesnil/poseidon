@@ -22,17 +22,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         private UserDetailsService userDetailService;
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
-                    .antMatchers("/bidList/**", "/rating/**", "/ruleName/**", "/trade/**", "/curvePoint/**").hasAnyAuthority("ADMIN", "USER")
-                    .antMatchers("/user/**").permitAll()
-                    .and().formLogin()  //login configuration
-                    .defaultSuccessUrl("/bidList/list")
-                    .and().logout()    //logout configuration
-                    .logoutUrl("/app-logout")
-                    .logoutSuccessUrl("/")
-                    .and().exceptionHandling() //exception handling configuration
-                    .accessDeniedPage("/app/error");
-        }
+                http
+                        .authorizeRequests()
+                        .antMatchers("/admin").hasRole("ADMIN")
+                        .antMatchers("/user").hasRole("USER")
+                        .anyRequest().authenticated()
+                        .and()
+                        .formLogin()
+                        .and()
+                        .oauth2Login();
+            }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
