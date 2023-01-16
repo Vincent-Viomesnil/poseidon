@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
 import java.util.Map;
 
@@ -26,22 +25,8 @@ public class LoginController {
         this.authorizedClientService = authorizedClientService;
     }
 
-    @RolesAllowed("USER")
-    @RequestMapping("/**")
-    public String getUser()
-    {
-        return "Welcome User";
-    }
 
-    @RolesAllowed({"ADMIN"})
-    @RequestMapping("/admin")
-    public String getAdmin()
-    {
-        return "Welcome Admin";
-    }
-
-
-    @RequestMapping("/*")
+    @RequestMapping("/")
     public String getUserInfo(Principal user) {
         StringBuffer userInfo= new StringBuffer();
         if(user instanceof UsernamePasswordAuthenticationToken){
