@@ -15,12 +15,13 @@
 			<a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
 			<a href="/trade/list">Trade</a>&nbsp;|&nbsp;
 			<a href="/ruleName/list">Rule</a>&nbsp;|&nbsp;
-			<a href="/user/list">User management</a>
-<!--			<a th:href="@{/user/list}">User management</a>-->
+			<b th:if="${username} eq 'admin'">
+				<a href="/user/list">User management</a>
+			</b>
 
 		</div>
 		<div class="col-6 text-right">
-			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
+			Logged in user: <b th:text="${username}"> </b>
 			<form th:action="@{/app-logout}" method="POST">
 				<input type="submit" value="Logout"/>
 			</form>
