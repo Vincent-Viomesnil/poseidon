@@ -26,7 +26,8 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/")
+   //seulement avec cette méthpde dans une clsse service puis récupération de l'user Principal dans chaque endpoint url/list .... dans le paramètre
+   @RequestMapping("/")
     public String getUserInfo(Principal user) {
         StringBuffer userInfo= new StringBuffer();
         if(user instanceof UsernamePasswordAuthenticationToken){
@@ -37,6 +38,8 @@ public class LoginController {
         }
         return userInfo.toString();
     }
+
+
 
     private StringBuffer getUsernamePasswordLoginInfo(Principal user)
     {
