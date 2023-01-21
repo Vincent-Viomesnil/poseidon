@@ -20,9 +20,7 @@ public class LoginController {
         this.authorizedClientService = authorizedClientService;
     }
 
-
-   //seulement avec cette méthpde dans une clsse service puis récupération de l'user Principal dans chaque endpoint url/list .... dans le paramètre
-   @RequestMapping("/")
+    @RequestMapping("/")
     public String getUserInfo(Principal user) {
         StringBuffer userInfo= new StringBuffer();
         if(user instanceof UsernamePasswordAuthenticationToken){
