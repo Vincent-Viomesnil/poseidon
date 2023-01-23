@@ -13,9 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -37,10 +34,8 @@ public class CurvePointTest {
     @Test
     public void getAllBidListFromService() throws Exception {
         CurvePoint curvePoint = Mockito.mock(CurvePoint.class);
-        List<CurvePoint> curvePointList = curvePointRepository.findAll();
-        when(curveService.findAll()).thenReturn(curvePointList);
+        curvePointRepository.save(curvePoint);
         this.mockMvc.perform(get("/curvePoint/list")).andDo(print()).andExpect(status().isOk());
-//                .andExpect(content().string(containsString("Hello, Mock")));
 
 
     }

@@ -1,11 +1,11 @@
+import com.nnk.springboot.Application;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration
+
 public class ApplicationTest {
-
-        @Test
-        public void contextLoads() {
-        }
-
+    @Test
+    public void main() {
+        Application.main(new String[] {});
     }
+}
+
