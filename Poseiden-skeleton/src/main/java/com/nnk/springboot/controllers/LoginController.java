@@ -52,5 +52,4 @@ public class LoginController {
         OAuth2AuthorizedClient authClient = this.authorizedClientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(), authToken.getName());
         return protectedInfo;
     }
-
 }
