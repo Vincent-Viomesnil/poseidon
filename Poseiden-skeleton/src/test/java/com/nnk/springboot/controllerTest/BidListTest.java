@@ -65,23 +65,63 @@ public class BidListTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("bidList/update"));
     }
+//    @Test
+//    @WithMockUser
+//    public void bidListPostUpdateRedirect() throws Exception {
+//        mockMvc.perform(post("/bidList/update/1")
+//                        .with(csrf()))
+//                .andExpect(status().is2xxSuccessful());
+
+//                .andExpect(view().name());
+        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
+
+
+//    @Test
+//    @WithMockUser
+//    public void bidListPostUpdate() throws Exception {
+//        mockMvc.perform(post("/bidList/update/1")
+//                        .with(csrf()))
+//                .andExpect(status().is2xxSuccessful()).andExpect(view().name("redirect:/bidList/list"));
+//    }
+//    @Test
+//    @WithMockUser
+//    public void bidListValidateTest() throws Exception {
+//        mockMvc.perform(post("/bidList/validate")
+//                        .with(csrf()))
+//                .andExpect(status().isFound()).andExpect(view().name("redirect:/bidList/list"));
+//    }
+
     @Test
     @WithMockUser
     public void bidListPostUpdateRedirect() throws Exception {
+
         mockMvc.perform(post("/bidList/update/1")
                         .with(csrf()))
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().isFound()).andExpect(redirectedUrl("/bidList/list"));
 
 //                .andExpect(view().name());
         //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
     }
+
+//    @Test
+//    @WithMockUser
+//    public void updatedPostCurvePointFromService() throws Exception {
+//        // error 403
+//        CurvePoint curvepoint = Mockito.mock(CurvePoint.class);
+//        when(curvePointRepository.findById(curvepoint.getId())).thenReturn(Optional.of(curvepoint));
+//
+//        this.mockMvc.perform(post("/curvePoint/update/21").param("curveId", "11")
+//                .param("term", "1.1")
+//                .param("value", "5.5")
+//                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+//                .andDo(print()).andExpect(status().is3xxRedirection());
 
     @Test
     @WithMockUser
     public void bidListPostUpdate() throws Exception {
         mockMvc.perform(post("/bidList/update/1")
                         .with(csrf()))
-                .andExpect(status().is2xxSuccessful()).andExpect(view().name("redirect:/bidList/list"));
+                .andExpect(status().isFound()).andExpect(view().name("redirect:/bidList/list"));
     }
     @Test
     @WithMockUser
@@ -91,6 +131,7 @@ public class BidListTest {
                 .andExpect(status().isFound()).andExpect(view().name("redirect:/bidList/list"));
 
     }
+
     @Test
     @WithMockUser
     public void bidListDelete() throws Exception {
@@ -99,6 +140,5 @@ public class BidListTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/bidList/list"));
     }
-
 
 }

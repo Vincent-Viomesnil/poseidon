@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Getter
@@ -17,16 +16,13 @@ public class BidList {
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "account", nullable = false, length = 30)
-    @NotNull(message = "account is mandatory")
+    @Column(name = "account",nullable = true, length = 30)
     private String account;
 
-    @Column(name = "type", nullable = false, length = 30)
-    @NotNull(message = "type is mandatory")
+    @Column(name = "type",nullable = true, length = 30)
     private String type;
 
-    @Column(name = "bid_quantity", nullable = false, precision = 0)
-    @NotNull(message = "bidQuantity is mandatory")
+    @Column(name = "bid_quantity",nullable = true, precision = 0)
     private Double bidQuantity;
 
     @Column(name = "ask_quantity", nullable = true, precision = 0)
