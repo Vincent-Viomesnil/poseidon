@@ -76,7 +76,21 @@ public class TradeTest {
         when(tradeService.findAll()).thenReturn(List.of(trade));
         mockMvc.perform(post("/trade/update/1")
                         .with(csrf()))
-                .andExpect(status().isOk()).andExpect(redirectedUrl("trade/list"));
+                .andExpect(status().isFound()).andExpect(redirectedUrl("/trade/list"));
+//                .andExpect(view().name());
+        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
+    }
+
+    @Test
+    @WithMockUser
+    public void tradePostUpdateRedirect() throws Exception {
+        Trade trade = Mockito.mock(Trade.class);
+
+        when(tradeService.findById(anyInt())).thenReturn(Optional.of(trade));
+        when(tradeService.findAll()).thenReturn(List.of(trade));
+        mockMvc.perform(post("/trade/update/1")
+                        .with(csrf()))
+                .andExpect(status().isFound()).andExpect(view().name("redirect:/trade/list"));
 //                .andExpect(view().name());
     }
     @Test
