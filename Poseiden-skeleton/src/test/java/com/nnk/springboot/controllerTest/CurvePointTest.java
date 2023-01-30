@@ -6,6 +6,7 @@ import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.service.CurveService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -134,13 +135,7 @@ public class CurvePointTest {
     @WithMockUser
     public void updatedPostCurvePointFromService() throws Exception {
         // error 403
-        CurvePoint curvepoint = new CurvePoint();
-        curvepoint.setValue(10d);
-        curvepoint.setTerm(15d);
-        curvepoint.setId(21);
-        curvepoint.setCurveId(12);
-        curvepoint.setAsOfDate(Timestamp.from(Instant.now()));
-        curvepoint.setCreationDate(Timestamp.from(Instant.now().minusMillis(1000)));
+        CurvePoint curvepoint = Mockito.mock(CurvePoint.class);
         when(curvePointRepository.findById(curvepoint.getId())).thenReturn(Optional.of(curvepoint));
 
 //        CurvePoint curvepoint2 = new CurvePoint();

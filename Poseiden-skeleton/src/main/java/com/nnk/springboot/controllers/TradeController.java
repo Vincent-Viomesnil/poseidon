@@ -41,7 +41,6 @@ public class TradeController {
 
     @GetMapping("/trade/add")
     public String addBidForm(Trade bid) {
-
         return "trade/add";
     }
 
@@ -71,7 +70,6 @@ public class TradeController {
         trade.setId(id);
         tradeService.save(trade);
         model.addAttribute("tradelist", tradeService.findAll());
-
 
         return "redirect:/trade/list";
     }
