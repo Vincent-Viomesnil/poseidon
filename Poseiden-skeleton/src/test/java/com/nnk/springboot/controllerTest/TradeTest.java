@@ -3,6 +3,7 @@ package com.nnk.springboot.controllerTest;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.service.TradeService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -14,7 +15,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -40,13 +40,16 @@ public class TradeTest {
     private TradeRepository tradeRepository;
 
 
+    @BeforeEach
+    public void setup(){
+        Trade trade = Mockito.mock(Trade.class);
+        when(tradeService.findById(anyInt())).thenReturn(Optional.of(trade));
+    }
+
     @Test
     @WithMockUser
     public void getAllTradeFromService() throws Exception {
-//        CurvePoint curvePoint = Mockito.mock(CurvePoint.class);
-//        curvePointRepository.save(curvePoint);
         this.mockMvc.perform(get("/trade/list")).andDo(print()).andExpect(status().isOk());
-
     }
 
     @Test
@@ -58,10 +61,6 @@ public class TradeTest {
     @Test
     @WithMockUser
     public void tradeUpdate() throws Exception {
-        Trade trade = Mockito.mock(Trade.class);
-
-        when(tradeService.findById(anyInt())).thenReturn(Optional.of(trade));
-
         mockMvc.perform(get("/trade/update/1")
                         .with(csrf()))
                 .andExpect(status().isOk())
@@ -69,40 +68,37 @@ public class TradeTest {
     }
     @Test
     @WithMockUser
-    public void tradePostUpdate() throws Exception {
-        Trade trade = Mockito.mock(Trade.class);
+    public void tradePostUpdateRedirect() throws Exception {
 
-        when(tradeService.findById(anyInt())).thenReturn(Optional.of(trade));
-        when(tradeService.findAll()).thenReturn(List.of(trade));
         mockMvc.perform(post("/trade/update/1")
                         .with(csrf()))
                 .andExpect(status().isFound()).andExpect(redirectedUrl("/trade/list"));
+
 //                .andExpect(view().name());
         //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
     }
 
     @Test
     @WithMockUser
-    public void tradePostUpdateRedirect() throws Exception {
-        Trade trade = Mockito.mock(Trade.class);
-
-        when(tradeService.findById(anyInt())).thenReturn(Optional.of(trade));
-        when(tradeService.findAll()).thenReturn(List.of(trade));
-        mockMvc.perform(post("/trade/update/1")
+    public void tradePostUpdate() throws Exception {
+              mockMvc.perform(post("/trade/update/1")
                         .with(csrf()))
                 .andExpect(status().isFound()).andExpect(view().name("redirect:/trade/list"));
-//                .andExpect(view().name());
+    }
+    @Test
+    @WithMockUser
+    public void tradeValidateTest() throws Exception {
+               mockMvc.perform(post("/trade/validate")
+                        .with(csrf()))
+                .andExpect(status().isFound()).andExpect(view().name("redirect:/trade/list"));
+
     }
     @Test
     @WithMockUser
     public void tradeDelete() throws Exception {
-        Trade trade = Mockito.mock(Trade.class);
-
-        when(tradeService.findById(anyInt())).thenReturn(Optional.of(trade));
-
-        mockMvc.perform(get("/trade/delete/1")
+              mockMvc.perform(get("/trade/delete/1")
                         .with(csrf()))
-                .andExpect(status().isOk())
+                .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/trade/list"));
     }
 

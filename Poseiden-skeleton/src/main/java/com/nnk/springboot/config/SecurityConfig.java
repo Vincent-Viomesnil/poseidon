@@ -23,7 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
                 http
-
                         .authorizeRequests()
                         .antMatchers("/user/list","/user/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
@@ -34,12 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .and()
                         .logout()
                         .logoutUrl("/app-logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/login")
                         .and()
                         .exceptionHandling().accessDeniedPage("/");
-            ;
-
-            }
+                        }
 
 
     @Bean

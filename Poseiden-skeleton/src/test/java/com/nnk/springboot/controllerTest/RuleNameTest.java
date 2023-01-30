@@ -3,6 +3,7 @@ package com.nnk.springboot.controllerTest;
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
 import com.nnk.springboot.service.RuleNameService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -20,9 +21,10 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -37,12 +39,15 @@ public class RuleNameTest {
 
     @MockBean
     private RuleNameRepository ruleNameRepository;
-
+    @BeforeEach
+    public void setup(){
+        RuleName ruleName = Mockito.mock(RuleName.class);
+        when(ruleNameService.findById(anyInt())).thenReturn(Optional.of(ruleName));
+    }
     @Test
     @WithMockUser
     public void getAllRuleNameFromService() throws Exception {
         this.mockMvc.perform(get("/ruleName/list")).andDo(print()).andExpect(status().isOk());
-
     }
 
     @Test
@@ -54,13 +59,44 @@ public class RuleNameTest {
     @Test
     @WithMockUser
     public void ruleNameUpdate() throws Exception {
-        RuleName ruleName = Mockito.mock(RuleName.class);
-
-        when(ruleNameService.findById(anyInt())).thenReturn(Optional.of(ruleName));
-
         mockMvc.perform(get("/ruleName/update/1")
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("ruleName/update"));
+    }
+    @Test
+    @WithMockUser
+    public void ruleNamePostUpdateRedirect() throws Exception {
+
+        mockMvc.perform(post("/ruleName/update/1")
+                        .with(csrf()))
+                .andExpect(status().isFound()).andExpect(redirectedUrl("/ruleName/list"));
+
+//                .andExpect(view().name());
+        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
+    }
+
+    @Test
+    @WithMockUser
+    public void ruleNamePostUpdate() throws Exception {
+        mockMvc.perform(post("/ruleName/update/1")
+                        .with(csrf()))
+                .andExpect(status().isFound()).andExpect(view().name("redirect:/ruleName/list"));
+    }
+    @Test
+    @WithMockUser
+    public void ruleNameValidateTest() throws Exception {
+        mockMvc.perform(post("/ruleName/validate")
+                        .with(csrf()))
+                .andExpect(status().isFound()).andExpect(view().name("redirect:/ruleName/list"));
+
+    }
+    @Test
+    @WithMockUser
+    public void ruleNameDelete() throws Exception {
+        mockMvc.perform(get("/ruleName/delete/1")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/ruleName/list"));
     }
 }
