@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,13 +21,16 @@ import java.time.Instant;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -127,7 +131,7 @@ public class CurvePointTest {
 
 
     @Test
-    @WithMockUser(username="admin",roles={"ADMIN"})
+    @WithMockUser
     public void updatedPostCurvePointFromService() throws Exception {
         // error 403
         CurvePoint curvepoint = new CurvePoint();
@@ -137,9 +141,40 @@ public class CurvePointTest {
         curvepoint.setCurveId(12);
         curvepoint.setAsOfDate(Timestamp.from(Instant.now()));
         curvepoint.setCreationDate(Timestamp.from(Instant.now().minusMillis(1000)));
-        curveService.save(curvepoint);
-        curvePointRepository.save(curvepoint);
-        this.mockMvc.perform(post("/curvePoint/update/21")).andDo(print()).andExpect(status().isOk());
+        when(curvePointRepository.findById(curvepoint.getId())).thenReturn(Optional.of(curvepoint));
+
+//        CurvePoint curvepoint2 = new CurvePoint();
+//        curvepoint.setValue(10d);
+//        curvepoint.setTerm(15d);
+//        curvepoint.setId(10);
+//        curvepoint.setCurveId(12);
+//        curvepoint.setAsOfDate(Timestamp.from(Instant.now()));
+//        curvepoint.setCreationDate(Timestamp.from(Instant.now().minusMillis(1000)));
+
+        this.mockMvc.perform(post("/curvePoint/update/21").param("curveId", "11")
+                .param("term", "1.1")
+                .param("value", "5.5")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andDo(print()).andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    @WithMockUser
+    public void curvePointUpdate() throws Exception {
+        CurvePoint curvepoint = new CurvePoint();
+        curvepoint.setValue(10d);
+        curvepoint.setTerm(15d);
+        curvepoint.setId(21);
+        curvepoint.setCurveId(12);
+        curvepoint.setAsOfDate(Timestamp.from(Instant.now()));
+        curvepoint.setCreationDate(Timestamp.from(Instant.now().minusMillis(1000)));
+
+        when(curveService.findById(anyInt())).thenReturn(Optional.of(curvepoint));
+
+        mockMvc.perform(get("/curvePoint/update/1")
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("curvePoint/update"));
     }
 
     @Test
