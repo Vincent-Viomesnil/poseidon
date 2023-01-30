@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -30,6 +31,7 @@ public class RuleServiceTests {
 		ruleNameRepository.save(rule);
 
 		assertTrue(ruleNameService.findById(rule.getId()).isPresent());
+		assertThat(ruleNameService.save(rule)).hasFieldOrProperty("name");
 
 		// Find
 		List<RuleName> listResult = ruleNameRepository.findAll();
@@ -37,7 +39,7 @@ public class RuleServiceTests {
 
 		// Delete
 		Integer id = rule.getId();
-		ruleNameRepository.delete(rule);
+		ruleNameService.delete(rule);
 		Optional<RuleName> ruleList = ruleNameRepository.findById(id);
 		assertTrue(ruleList.isEmpty());
 	}
