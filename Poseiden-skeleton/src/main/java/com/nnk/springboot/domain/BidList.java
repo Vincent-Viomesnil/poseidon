@@ -85,6 +85,31 @@ public class BidList {
         this.bidQuantity = bidQuantity;
     }
 
+    public BidList(Integer id, String account, String type, Double bidQuantity, Double askQuantity, Double bid, Double ask, String benchmark, Timestamp bidListDate, String commentary, String security, String status, String trader, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
+        this.id = id;
+        this.account = account;
+        this.type = type;
+        this.bidQuantity = bidQuantity;
+        this.askQuantity = askQuantity;
+        this.bid = bid;
+        this.ask = ask;
+        this.benchmark = benchmark;
+        this.bidListDate = bidListDate;
+        this.commentary = commentary;
+        this.security = security;
+        this.status = status;
+        this.trader = trader;
+        this.book = book;
+        this.creationName = creationName;
+        this.creationDate = creationDate;
+        this.revisionName = revisionName;
+        this.revisionDate = revisionDate;
+        this.dealName = dealName;
+        this.dealType = dealType;
+        this.sourceListId = sourceListId;
+        this.side = side;
+    }
+
     public BidList() {
     }
 }

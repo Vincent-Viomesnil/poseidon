@@ -25,7 +25,6 @@ public class LoginController {
         StringBuffer userInfo= new StringBuffer();
         if(user instanceof UsernamePasswordAuthenticationToken){
             userInfo.append(getUsernamePasswordLoginInfo(user));
-
         }
         else if(user instanceof OAuth2AuthenticationToken){
             userInfo.append(getOauth2LoginInfo(user));
@@ -36,7 +35,6 @@ public class LoginController {
     public StringBuffer getUsernamePasswordLoginInfo(Principal user)
     {
         StringBuffer usernameInfo = new StringBuffer();
-
         UsernamePasswordAuthenticationToken token = ((UsernamePasswordAuthenticationToken) user);
         if(token.isAuthenticated()){
             User u = (User) token.getPrincipal();

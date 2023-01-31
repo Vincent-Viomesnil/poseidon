@@ -41,4 +41,12 @@ public class CurvePoint {
     public CurvePoint() {
 
     }
+
+    public CurvePoint(Integer curveId, Timestamp asOfDate, Double term, Double value, Timestamp creationDate) {
+        this.curveId = curveId;
+        this.asOfDate = asOfDate;
+        this.term = term;
+        this.value = value;
+        this.creationDate = creationDate;
+    }
 }
