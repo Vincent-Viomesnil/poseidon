@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllerTest;
 
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.service.RatingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -36,9 +34,6 @@ public class RatingTest {
 
     @MockBean
     private RatingService ratingService;
-
-    @MockBean
-    private RatingRepository ratingRepository;
 
     @BeforeEach
     public void setup(){
@@ -73,9 +68,6 @@ public class RatingTest {
         mockMvc.perform(post("/rating/update/1")
                         .with(csrf()))
                 .andExpect(status().isFound()).andExpect(redirectedUrl("/rating/list"));
-
-//                .andExpect(view().name());
-        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
     }
 
     @Test

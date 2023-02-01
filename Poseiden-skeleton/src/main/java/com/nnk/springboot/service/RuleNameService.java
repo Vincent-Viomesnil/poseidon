@@ -17,15 +17,15 @@ public class RuleNameService {
     public List<RuleName> findAll() {
         return ruleNameRepository.findAll();
     }
-    public RuleName save(RuleName truleName) {
-        return ruleNameRepository.save(truleName);
+    public RuleName save(RuleName ruleName) {
+        return ruleNameRepository.save(ruleName);
     }
 
     public Optional<RuleName> findById(Integer id) {
         return ruleNameRepository.findById(id);
     }
 
-    public void delete(RuleName truleName) {
-        ruleNameRepository.delete(truleName);
+    public void delete(RuleName ruleName) {
+        ruleNameRepository.delete(ruleName);
     }
 }
