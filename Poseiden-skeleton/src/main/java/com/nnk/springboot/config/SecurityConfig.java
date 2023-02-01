@@ -35,7 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutUrl("/app-logout")
                         .logoutSuccessUrl("/login")
                         .and()
-                        .exceptionHandling().accessDeniedPage("/");
+                        .exceptionHandling().accessDeniedPage("/")
+                        .and()
+                        .rememberMe()
+                        .tokenValiditySeconds(365 * 24 * 60 * 60) // expiration time: 1 an
+                        .key("AbcdefghiJklmNoPqRstUvXyz").userDetailsService(this.userDetailService);
                         }
 
 

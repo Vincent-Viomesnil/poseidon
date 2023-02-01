@@ -169,5 +169,8 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-webflux:5.3.18" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.16" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.passay:passay:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.cryptacular:cryptacular:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.50" level="project" />
   </component>
 </module>
