@@ -13,7 +13,7 @@
 
 		</div>
 		<div class="col-6 text-right">
-			<a href="/">Home</a>&nbsp;|&nbsp;<a href="/login">Login</a>
+			<a href="/">Home</a>&nbsp;|&nbsp;<a href="/login">Logout</a>
 		</div>
 	</div>
 	<div class="row"><h2>User List</h2></div>
@@ -36,13 +36,19 @@
 					<td th:text="${user.username}"></td>
 					<td style="width: 25%" th:text="${user.role}"></td>
 					<td style="width: 15%" class="text-center">
-						<a th:href="@{/user/update/{id}(id=${user.id})}">Edit</a>&nbsp;|&nbsp;
-						<a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a>
+						<a th:href="@{/user/update/{id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+						<a th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
+<footer class="container">
+	<div class="align-text-bottom text-right">
+		<img src="https://user.oc-static.com/upload/2019/10/21/15716625873741_image1.png"  alt="poseidon picture" style="width:150px; height:150px">
+	</div>
+</footer>
 </body>
 </html>
