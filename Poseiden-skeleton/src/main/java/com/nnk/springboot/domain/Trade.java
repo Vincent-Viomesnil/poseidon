@@ -86,4 +86,28 @@ public class Trade {
         this.type = type;
 
     }
+
+    public Trade(Integer id, String account, String type, Double buyQuantity, Double sellQuantity, Double buyPrice, Double sellPrice, Timestamp tradeDate, String security, String status, String trader, String benchmark, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
+        this.id = id;
+        this.account = account;
+        this.type = type;
+        this.buyQuantity = buyQuantity;
+        this.sellQuantity = sellQuantity;
+        this.buyPrice = buyPrice;
+        this.sellPrice = sellPrice;
+        this.tradeDate = tradeDate;
+        this.security = security;
+        this.status = status;
+        this.trader = trader;
+        this.benchmark = benchmark;
+        this.book = book;
+        this.creationName = creationName;
+        this.creationDate = creationDate;
+        this.revisionName = revisionName;
+        this.revisionDate = revisionDate;
+        this.dealName = dealName;
+        this.dealType = dealType;
+        this.sourceListId = sourceListId;
+        this.side = side;
+    }
 }

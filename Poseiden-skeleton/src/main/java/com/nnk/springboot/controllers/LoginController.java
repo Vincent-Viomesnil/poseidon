@@ -20,14 +20,11 @@ public class LoginController {
         this.authorizedClientService = authorizedClientService;
     }
 
-
-   //seulement avec cette méthpde dans une clsse service puis récupération de l'user Principal dans chaque endpoint url/list .... dans le paramètre
-   @RequestMapping("/")
+    @RequestMapping("/")
     public String getUserInfo(Principal user) {
         StringBuffer userInfo= new StringBuffer();
         if(user instanceof UsernamePasswordAuthenticationToken){
             userInfo.append(getUsernamePasswordLoginInfo(user));
-
         }
         else if(user instanceof OAuth2AuthenticationToken){
             userInfo.append(getOauth2LoginInfo(user));
@@ -38,7 +35,6 @@ public class LoginController {
     public StringBuffer getUsernamePasswordLoginInfo(Principal user)
     {
         StringBuffer usernameInfo = new StringBuffer();
-
         UsernamePasswordAuthenticationToken token = ((UsernamePasswordAuthenticationToken) user);
         if(token.isAuthenticated()){
             User u = (User) token.getPrincipal();
@@ -54,5 +50,4 @@ public class LoginController {
         OAuth2AuthorizedClient authClient = this.authorizedClientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(), authToken.getName());
         return protectedInfo;
     }
-
 }

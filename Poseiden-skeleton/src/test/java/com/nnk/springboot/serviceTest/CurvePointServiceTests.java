@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,14 +31,14 @@ public class CurvePointServiceTests {
 		curvePointRepository.save(curvePoint);
 
 		assertTrue(curveService.findById(curvePoint.getId()).isPresent());
-
+		assertThat(curveService.save(curvePoint)).isInstanceOfAny(CurvePoint.class);
 		// Find
 		List<CurvePoint> listResult = curvePointRepository.findAll();
 		assertEquals(curveService.findAll().size(), listResult.size());
 
 		// Delete
 		Integer id = curvePoint.getId();
-		curvePointRepository.delete(curvePoint);
+		curveService.delete(curvePoint);
 		Optional<CurvePoint> curvePointList = curvePointRepository.findById(id);
 		assertTrue(curvePointList.isEmpty());
 	}

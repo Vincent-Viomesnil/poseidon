@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		<div class="col-6">
+	<div class="col-6">
 			<a href="/bidList/list">Bid List</a>&nbsp;|&nbsp;
 			<a href="/curvePoint/list">Curve Points</a>&nbsp;|&nbsp;
 			<a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
@@ -41,19 +41,24 @@
 				</tr>
 			</thead>
 			<tbody>
-			<tr th:each="bidlist : ${bidlists}">
-				<td th:text="${bidlist.id}"></td>
-				<td th:text="${bidlist.account}"></td>
-				<td th:text="${bidlist.type}"></td>
-				<td th:text="${bidlist.bidQuantity}"></td>
+			<tr th:each="bidList : ${bidlists}">
+				<td th:text="${bidList.id}"></td>
+				<td th:text="${bidList.account}"></td>
+				<td th:text="${bidList.type}"></td>
+				<td th:text="${bidList.bidQuantity}"></td>
 				<td style="width: 15%" class="text-center">
-					<a th:href="@{/bidList/update/{id}(id=${bidlist.id})}" class="btn btn-primary">Edit</a>
-					<a th:href="@{/bidList/delete/{id}(id=${bidlist.id})}" class="btn btn-danger">Delete</a>
+					<a th:href="@{/bidList/update/{id}(id=${bidList.id})}" class="btn btn-primary">Edit</a>
+					<a th:href="@{/bidList/delete/{id}(id=${bidList.id})}" class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
+<footer class="container">
+	<div class="align-text-bottom text-right">
+		<img src="https://user.oc-static.com/upload/2019/10/21/15716625873741_image1.png"  alt="poseidon picture" style="width:150px; height:150px">
+	</div>
+</footer>
 </body>
 </html>

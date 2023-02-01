@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -29,6 +30,7 @@ public class TradeServiceTests {
 		tradeRepository.save(trade);
 
 		assertTrue(tradeService.findById(trade.getId()).isPresent());
+		assertThat(tradeService.save(trade)).hasFieldOrProperty("account");
 
 		// Find
 		List<Trade> listResult = tradeRepository.findAll();
@@ -36,7 +38,7 @@ public class TradeServiceTests {
 
 		// Delete
 		Integer id = trade.getId();
-		tradeRepository.delete(trade);
+		tradeService.delete(trade);
 		Optional<Trade> tradeList = tradeRepository.findById(id);
 		assertTrue(tradeList.isEmpty());
 	}

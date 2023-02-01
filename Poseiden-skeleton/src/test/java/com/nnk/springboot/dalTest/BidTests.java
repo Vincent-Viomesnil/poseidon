@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,11 +22,32 @@ public class BidTests {
 
 	@Test
 	public void bidListTest() {
-		BidList bid = new BidList("Account Test", "Type Test", 10d);
+		Timestamp bidListDate = Timestamp.from(Instant.now());
+		Timestamp creationDate = Timestamp.from(Instant.now().minusMillis(1000));
+		Timestamp revisionDate = Timestamp.from(Instant.now().minusMillis(8000));
+		BidList bid = new BidList(1, "Account Test", "Type Test", 10d,12d,5d,2d,
+				"benchmark",bidListDate, "commentary","security",
+				"status", "trader", "book", "creationName", creationDate,
+				"revisionName", revisionDate, "dealName", "dealType", "sourceListId",
+				"side"
+				);
 
 		// Save
 		bid = bidListRepository.save(bid);
+		assertNotNull(bid.getBid());
+		assertNotNull(bid.getBidListDate());
+		assertNotNull(bid.getAsk());
+		assertNotNull(bid.getSide());
+		assertNotNull(bid.getAccount());
+		assertNotNull(bid.getBook());
+		assertNotNull(bid.getCommentary());
 		assertNotNull(bid.getId());
+		assertNotNull(bid.getBenchmark());
+		assertNotNull(bid.getType());
+		assertNotNull(bid.getStatus());
+		assertNotNull(bid.getType());
+		assertNotNull(bid.getDealName());
+
 		assertEquals(bid.getBidQuantity(), 10d, 10d);
 
 		// Update

@@ -17,10 +17,8 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
-
 @Controller
 public class BidListController {
-
     @Autowired
     private BidListService bidListService;
 

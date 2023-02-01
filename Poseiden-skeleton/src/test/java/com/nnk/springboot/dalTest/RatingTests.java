@@ -24,6 +24,9 @@ public class RatingTests {
 		// Save
 		ratingRepository.save(rating);
 		assertNotNull(rating.getId());
+		assertNotNull(rating.getFitchRating());
+		assertNotNull(rating.getMoodysRating());
+		assertNotNull(rating.getSandPRating());
 		assertTrue(rating.getOrderNumber() == 10);
 
 		// Update

@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -30,6 +31,7 @@ public class RatingServiceTests {
 		ratingRepository.save(rating);
 
 		assertTrue(ratingService.findById(rating.getId()).isPresent());
+		assertThat(ratingService.save(rating)).hasFieldOrProperty("moodysRating");
 
 		// Find
 		List<Rating> listResult = ratingRepository.findAll();
@@ -37,7 +39,7 @@ public class RatingServiceTests {
 
 		// Delete
 		Integer id = rating.getId();
-		ratingRepository.delete(rating);
+		ratingService.delete(rating);
 		Optional<Rating> ratingList = ratingRepository.findById(id);
 		assertTrue(ratingList.isEmpty());
 	}

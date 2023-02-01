@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,6 +32,7 @@ public class BidServiceTests {
 		bidListRepository.save(bid);
 
 		assertTrue(bidListService.findById(bid.getId()).isPresent());
+		assertThat(bidListService.save(bid)).hasFieldOrProperty("account");
 
 		// Find
 		List<BidList> listResult = bidListRepository.findAll();

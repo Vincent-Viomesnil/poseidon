@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Getter
@@ -17,16 +16,13 @@ public class BidList {
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "account", nullable = false, length = 30)
-    @NotNull(message = "account is mandatory")
+    @Column(name = "account",nullable = true, length = 30)
     private String account;
 
-    @Column(name = "type", nullable = false, length = 30)
-    @NotNull(message = "type is mandatory")
+    @Column(name = "type",nullable = true, length = 30)
     private String type;
 
-    @Column(name = "bid_quantity", nullable = false, precision = 0)
-    @NotNull(message = "bidQuantity is mandatory")
+    @Column(name = "bid_quantity",nullable = true, precision = 0)
     private Double bidQuantity;
 
     @Column(name = "ask_quantity", nullable = true, precision = 0)
@@ -87,6 +83,31 @@ public class BidList {
         this.account = account;
         this.type= type;
         this.bidQuantity = bidQuantity;
+    }
+
+    public BidList(Integer id, String account, String type, Double bidQuantity, Double askQuantity, Double bid, Double ask, String benchmark, Timestamp bidListDate, String commentary, String security, String status, String trader, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
+        this.id = id;
+        this.account = account;
+        this.type = type;
+        this.bidQuantity = bidQuantity;
+        this.askQuantity = askQuantity;
+        this.bid = bid;
+        this.ask = ask;
+        this.benchmark = benchmark;
+        this.bidListDate = bidListDate;
+        this.commentary = commentary;
+        this.security = security;
+        this.status = status;
+        this.trader = trader;
+        this.book = book;
+        this.creationName = creationName;
+        this.creationDate = creationDate;
+        this.revisionName = revisionName;
+        this.revisionDate = revisionDate;
+        this.dealName = dealName;
+        this.dealType = dealType;
+        this.sourceListId = sourceListId;
+        this.side = side;
     }
 
     public BidList() {
