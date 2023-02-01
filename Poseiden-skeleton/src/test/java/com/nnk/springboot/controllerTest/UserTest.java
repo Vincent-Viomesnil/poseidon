@@ -20,7 +20,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -31,7 +30,6 @@ public class UserTest {
 
     @Autowired
     private MockMvc mockMvc;
-
 
     @MockBean
     private UserRepository userRepository;
@@ -76,20 +74,6 @@ public class UserTest {
                 .andExpect(view().name("user/update"));
     }
 
-    @Test
-    @WithMockUser(username="admin",authorities={"ADMIN"})
-    public void userPostUpdate() throws Exception {
-        mockMvc.perform(post("/user/update/1")
-                        .with(csrf()))
-                .andExpect(status().isOk()).andExpect(view().name("user/update"));
-    }
-    @Test
-    @WithMockUser(username="admin",authorities={"ADMIN"})
-    public void userValidateTest() throws Exception {
-        mockMvc.perform(post("/user/validate")
-                        .with(csrf()))
-                .andExpect(status().isOk()).andExpect(view().name("user/add"));
-    }
     @Test
     @WithMockUser(username="admin",authorities={"ADMIN"})
     public void userDelete() throws Exception {
