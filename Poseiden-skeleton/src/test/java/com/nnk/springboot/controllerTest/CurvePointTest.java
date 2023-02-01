@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllerTest;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.service.CurveService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,8 +35,6 @@ public class CurvePointTest {
     @MockBean
     private CurveService curveService;
 
-    @MockBean
-    private CurvePointRepository curvePointRepository;
 
     @BeforeEach
     public void setup(){
@@ -71,9 +68,6 @@ public class CurvePointTest {
         mockMvc.perform(post("/curvePoint/update/1")
                         .with(csrf()))
                 .andExpect(status().isFound()).andExpect(redirectedUrl("/curvePoint/list"));
-
-//                .andExpect(view().name());
-        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
     }
 
     @Test
@@ -99,20 +93,4 @@ public class CurvePointTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/curvePoint/list"));
     }
-
-
-//    @Test
-//    @WithMockUser
-//    public void updatedPostCurvePointFromService() throws Exception {
-//        // error 403
-//        CurvePoint curvepoint = Mockito.mock(CurvePoint.class);
-//        when(curvePointRepository.findById(curvepoint.getId())).thenReturn(Optional.of(curvepoint));
-//
-//        this.mockMvc.perform(post("/curvePoint/update/21").param("curveId", "11")
-//                .param("term", "1.1")
-//                .param("value", "5.5")
-//                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-//                .andDo(print()).andExpect(status().is3xxRedirection());
-//    }
-
 }

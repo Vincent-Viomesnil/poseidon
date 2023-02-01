@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllerTest;
 
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.service.TradeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,10 +35,6 @@ public class TradeTest {
     @MockBean
     private TradeService tradeService;
 
-    @MockBean
-    private TradeRepository tradeRepository;
-
-
     @BeforeEach
     public void setup(){
         Trade trade = Mockito.mock(Trade.class);
@@ -73,9 +68,6 @@ public class TradeTest {
         mockMvc.perform(post("/trade/update/1")
                         .with(csrf()))
                 .andExpect(status().isFound()).andExpect(redirectedUrl("/trade/list"));
-
-//                .andExpect(view().name());
-        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
     }
 
     @Test

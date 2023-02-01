@@ -1,7 +1,6 @@
 package com.nnk.springboot.controllerTest;
 
 import com.nnk.springboot.domain.RuleName;
-import com.nnk.springboot.repositories.RuleNameRepository;
 import com.nnk.springboot.service.RuleNameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -37,8 +35,6 @@ public class RuleNameTest {
     @MockBean
     private RuleNameService ruleNameService;
 
-    @MockBean
-    private RuleNameRepository ruleNameRepository;
     @BeforeEach
     public void setup(){
         RuleName ruleName = Mockito.mock(RuleName.class);
@@ -71,9 +67,6 @@ public class RuleNameTest {
         mockMvc.perform(post("/ruleName/update/1")
                         .with(csrf()))
                 .andExpect(status().isFound()).andExpect(redirectedUrl("/ruleName/list"));
-
-//                .andExpect(view().name());
-        //isFound trouve la redirection vers le endpoint utilisé, Plus ciblé code de Redirection
     }
 
     @Test
