@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
+@Slf4j
 public class UserController {
     @Autowired
     private UserRepository userRepository;
@@ -28,6 +30,7 @@ public class UserController {
 
     @GetMapping("/user/add")
     public String addUser(User user) {
+        log.info("the User " +user.getUsername()+ " adding a new User");
         return "user/add";
     }
 
@@ -48,6 +51,7 @@ public class UserController {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         user.setPassword("");
         model.addAttribute("user", user);
+        log.info("the user " +user.getUsername()+ " updates a user account");
         return "user/update";
     }
 
@@ -63,6 +67,7 @@ public class UserController {
         user.setId(id);
         userRepository.save(user);
         model.addAttribute("users", userRepository.findAll());
+        log.info("the user " +user.getUsername()+ " updates a user account");
         return "redirect:/user/list";
     }
 
@@ -71,6 +76,7 @@ public class UserController {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         userRepository.delete(user);
         model.addAttribute("users", userRepository.findAll());
+        log.info("the user" +user.getUsername()+ " has deleted a user account");
         return "redirect:/user/list";
     }
 }
